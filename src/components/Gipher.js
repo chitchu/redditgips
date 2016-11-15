@@ -4,20 +4,11 @@ const Gipher = (props) => {
   // console.log(props);
 
   const style = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    margin: 'auto',
-    minWidth: '50%',
-    minHeight: '50%',
-    overflowX: 'hidden'
+    position: 'relative',
+    width: '100%'
   };
 
   const { domain, url, thumbnail } = props;
-
-  console.log(domain, props);
 
   let element;
 
@@ -33,7 +24,7 @@ const Gipher = (props) => {
     case 'gfycat.com':
       const name = url.split('/')[url.split('/').length - 1];
       element = (
-        <video autoPlay style={style}>
+        <video autoPlay style={style} loop='loop'>
           <source id="webmSource" src={`https://zippy.gfycat.com/${name}.webm`} type="video/webm" />
           <source id="webmSource" src={`https://fat.gfycat.com/${name}.webm`} type="video/webm" />
           <source id="mp4Source" src={`https://zippy.gfycat.com/${name}.mp4`} type="video/mp4" />
