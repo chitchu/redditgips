@@ -4,20 +4,19 @@
   "private": true,
   "homepage": "https://chitchu.github.io/redditgips",
   "devDependencies": {
-    "react-scripts": "0.6.1"
+    "react-scripts": "^0.7.0"
   },
   "dependencies": {
     "immutable": "^3.8.1",
-    "material-ui": "^0.16.0",
-    "node-guid": "0.0.3",
+    "material-ui": "^0.16.2",
     "node-uuid": "^1.4.7",
     "normalize.css": "^5.0.0",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "react-tap-event-plugin": "^1.0.0",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "react-redux": "^4.4.6",
+    "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
-    "redux-actions": "^0.12.0",
+    "redux-actions": "^0.13.0",
     "redux-thunk": "^2.1.0"
   },
   "scripts": {
