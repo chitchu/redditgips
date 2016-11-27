@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadContent } from '../ducks/';
 import {GridList, GridTile} from 'material-ui/GridList';
-import Gipher from './Gipher';
+import ImageContainer from './ImageContainer';
 
-import ng from 'node-guid';
+import {v4} from 'node-uuid';
 
 const mapState = state => ({
   content: state.cards.get('content').toJS()
@@ -43,18 +43,16 @@ class Cards extends Component {
         <GridList
           cellHeight={ 400 }
           style={this.styles.gridList}>
-
           {
             this.props.content
-              .filter( ({data}) => !data.stickied && data.link_flair_text !== 'Request | Waiting' )
-
+              .filter(({data}) => !data.stickied && data.link_flair_text !== 'Request | Waiting' )
               .map( ({data:tile}) => {
                 return (
                   <GridTile
-                    key={ ng.new() }
+                    key={ v4() }
                     title={ tile.title }
                     subtitle={ tile.author }>
-                      <Gipher {...tile}/>
+                      <ImageContainer {...tile} />
                   </GridTile>
                 )
               })

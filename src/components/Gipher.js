@@ -24,7 +24,7 @@ const Gipher = (props) => {
     case 'gfycat.com':
       const name = url.split('/')[url.split('/').length - 1];
       element = (
-        <video autoPlay style={style} loop='loop'>
+        <video style={style} loop='loop'>
           <source id="webmSource" src={`https://zippy.gfycat.com/${name}.webm`} type="video/webm" />
           <source id="webmSource" src={`https://fat.gfycat.com/${name}.webm`} type="video/webm" />
           <source id="mp4Source" src={`https://zippy.gfycat.com/${name}.mp4`} type="video/mp4" />
