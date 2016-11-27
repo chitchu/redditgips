@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { playGif } from '../ducks/';
 
@@ -14,18 +15,20 @@ const mapDispatch = dispatch => ({
 
 class ImageContainer extends Component {
 
-  style = {
-    width: '100%',
-    height: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  };
+  RootDiv = styled.div`
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(${this.props.thumbnail})
+  `;
 
   render() {
+    const RootDiv = this.RootDiv;
     return (
-      <div style={Object.assign(this.style, {backgroundImage:`url(${this.props.thumbnail})`})}>
+      <RootDiv>
         <button onClick={() => this.props.handlePlay(this.props.id)}>Play</button>
-      </div>
+      </RootDiv>
     );
   }
 }

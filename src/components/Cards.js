@@ -1,10 +1,11 @@
+import ImageContainer from './ImageContainer';
 import React, {Component} from 'react';
+import styled from 'styled-components';
+
 import { connect } from 'react-redux';
 import { loadContent } from '../ducks/';
-import {GridList, GridTile} from 'material-ui/GridList';
-import ImageContainer from './ImageContainer';
-
-import {v4} from 'node-uuid';
+import { GridList, GridTile } from 'material-ui/GridList';
+import { v4 } from 'node-uuid';
 
 const mapState = state => ({
   content: state.cards.get('content').toJS()
@@ -21,28 +22,30 @@ class Cards extends Component {
     loaded: false
   };
 
-  styles = {
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-    },
-    gridList: {
-      width: '80%',
-      overflowY: 'auto',
-    },
-  };
+  RootDiv = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around
+  `;
+
+  StyledGridList = styled(GridList)`
+    width: 80%;
+    overflow-y: auto;
+  `;
+
   componentDidMount() {
     if (!this.state.loaded) {
       this.props.loadContent();
     }
   }
+
   render() {
+    const RootDiv = this.RootDiv;
+    const StyledGridList = this.StyledGridList;
     return (
-      <div style={this.styles.root}>
-        <GridList
-          cellHeight={ 400 }
-          style={this.styles.gridList}>
+      <RootDiv>
+        <StyledGridList
+          cellHeight={ 400 }>
           {
             this.props.content
               .filter(({data}) => !data.stickied && data.link_flair_text !== 'Request | Waiting' )
@@ -57,8 +60,8 @@ class Cards extends Component {
                 )
               })
           }
-        </GridList>
-      </div>
+        </StyledGridList>
+      </RootDiv>
     );
   }
 }
