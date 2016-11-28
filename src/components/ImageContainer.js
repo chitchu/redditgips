@@ -7,11 +7,11 @@ import { toggleGif } from '../ducks/';
 const mapState = (state, { postId }) => {
   const {
     thumbnail,
-    isPlaying,
     domain,
     url,
     id
   } = state.posts.get('posts').get(postId).toJS();
+  const isPlaying = state.ui.get('postsStates').get(postId).get('isPlaying');
   return {
     thumbnail,
     isPlaying,
@@ -37,13 +37,29 @@ class ImageContainer extends Component {
     background-image: url(${this.props.thumbnail})
   `;
 
+  PlayButton = styled.button`
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+  `;
+
+  StyledGipher = styled(Gipher)`
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+  `;
+
   render() {
     const RootDiv = this.RootDiv;
-    const Gip = this.props.isPlaying ? <Gipher {...this.props} /> : '';
+    const PlayButton = this.PlayButton;
+    const StyledGipher = this.StyledGipher;
+    const Gip = this.props.isPlaying ? <StyledGipher {...this.props} /> : '';
     return (
       <RootDiv>
-        <button onClick={() => this.props.handleToggle(this.props.id)}>Play</button>
         { Gip }
+        <PlayButton onClick={() => this.props.handleToggle(this.props.id)} />
       </RootDiv>
     );
   }

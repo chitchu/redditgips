@@ -1,16 +1,14 @@
-import ImageContainer from './ImageContainer';
 import React, {Component} from 'react';
+import GridTileContainer from './GridTileContainer';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { loadContent } from '../ducks/';
-import { GridList, GridTile } from 'material-ui/GridList';
+import { GridList } from 'material-ui/GridList';
 import { v4 } from 'node-uuid';
 
 const mapState = state => ({
-  entries: state.posts.get('entries').toJS(),
-  posts: state.posts.get('posts').toJS()
-  // content: state.cards.get('content').toJS()
+  entries: state.posts.get('entries').toJS()
 });
 
 const mapDispatch = dispatch => ({
@@ -31,7 +29,7 @@ class Cards extends Component {
   `;
 
   StyledGridList = styled(GridList)`
-    width: 80%;
+    width: 100%;
     overflow-y: auto;
   `;
 
@@ -50,20 +48,20 @@ class Cards extends Component {
           cellHeight={400}>
           {
             this.props.entries
-              .filter( entry => {
-                const {stickied, link_flair_text} = this.props.posts[entry];
-                return (!stickied && link_flair_text !== 'Request | Waiting');
-              })
               .map ( entry => {
-                const post = this.props.posts[entry];
+                // const post = this.props.posts[entry];
+                // console.log(entry);
                 return (
-                  <GridTile
-                    key={ v4() }
-                    title={ post.title }
-                    subtitle={ post.author }>
-                    <ImageContainer postId={entry} />
-                  </GridTile>
+                  <GridTileContainer key={v4()} postId={entry} />
                 );
+                // return (
+                //   <GridTile
+                //     key={ v4() }
+                //     title={ post.title }
+                //     subtitle={ post.author }>
+                //     <ImageContainer postId={entry} />
+                //   </GridTile>
+                // );
               })
           }
         </StyledGridList>
