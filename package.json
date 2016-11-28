@@ -23,9 +23,9 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom"
   }
 }
