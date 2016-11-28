@@ -1,15 +1,29 @@
 import React, {Component} from 'react';
+import Gipher from './Gipher';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { playGif } from '../ducks/';
+import { toggleGif } from '../ducks/';
 
-const mapState = (state, { postId }) => ({
-  ...state.posts.get('posts').get(postId).toJS()
-});
+const mapState = (state, { postId }) => {
+  const {
+    thumbnail,
+    isPlaying,
+    domain,
+    url,
+    id
+  } = state.posts.get('posts').get(postId).toJS();
+  return {
+    thumbnail,
+    isPlaying,
+    domain,
+    url,
+    id
+  };
+};
 
 const mapDispatch = dispatch => ({
-  handlePlay: id => {
-    dispatch(playGif(id));
+  handleToggle: id => {
+    dispatch(toggleGif(id));
   }
 });
 
@@ -25,9 +39,11 @@ class ImageContainer extends Component {
 
   render() {
     const RootDiv = this.RootDiv;
+    const Gip = this.props.isPlaying ? <Gipher {...this.props} /> : '';
     return (
       <RootDiv>
-        <button onClick={() => this.props.handlePlay(this.props.id)}>Play</button>
+        <button onClick={() => this.props.handleToggle(this.props.id)}>Play</button>
+        { Gip }
       </RootDiv>
     );
   }

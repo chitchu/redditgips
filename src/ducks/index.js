@@ -6,6 +6,7 @@ import { Map, List } from 'immutable';
 
 const contentLoadedAction = createAction('CONTENT_LOADED');
 const playGifAction = createAction('PLAY_GIF');
+const toggleGifAction = createAction('TOGGLE_GIF');
 
 const posts = handleActions({
   [contentLoadedAction]: (state, {payload}) => {
@@ -32,6 +33,13 @@ const posts = handleActions({
     const post = posts.get(payload);
     return state
       .set('posts', posts.set(payload, post.set('isPlaying', true)));
+  },
+  [toggleGifAction]: (state, {payload}) => {
+    const posts = state.get('posts');
+    const post = posts.get(payload);
+    const isPlaying = post.get('isPlaying');
+    return state
+      .set('posts', posts.set(payload, post.set('isPlaying', !isPlaying)));
   }
 }, Map({entries: List(), posts: Map({})}) );
 
@@ -40,22 +48,22 @@ const reducers = combineReducers({
 });
 
 const loadContent = () => {
-  // return createAction('LOAD_CONTENT');
   return (dispatch, getState) => {
     fetch('https://www.reddit.com/r/perfectloops/hot.json')
       .then( xhr =>  xhr.json() )
       .then( ({data: {children}}) => {
         dispatch(contentLoadedAction(children));
       })
-  }
+  };
 }
 
-const playGif = args => {
-  return playGifAction(args);
-}
+const playGif = args => playGifAction(args);
+
+const toggleGif = args => toggleGifAction(args);
 
 export {
   reducers as default,
   loadContent,
-  playGif
+  playGif,
+  toggleGif
 }

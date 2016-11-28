@@ -1,13 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Gipher = (props) => {
-  // console.log(props);
+  const StyledVideo = styled.video`
+    position: relative;
+    width: 100%;
+  `;
 
-  const style = {
-    position: 'relative',
-    width: '100%'
-  };
-
+  const StyledImg = styled.img`
+    position: relative;
+    width: 100%;
+  `;
   const { domain, url, thumbnail } = props;
 
   let element;
@@ -16,37 +19,37 @@ const Gipher = (props) => {
     case 'i.imgur.com':
       const imgurname = url.split('/')[url.split('/').length -1].split('.')[0];
       element = (
-        <video autoPlay style={style}>
+        <StyledVideo autoPlay loop>
             <source src={`//i.imgur.com/${imgurname}.mp4`} type="video/mp4" />
-        </video>
+        </StyledVideo>
       );
       break;
     case 'gfycat.com':
       const name = url.split('/')[url.split('/').length - 1];
       element = (
-        <video style={style} loop='loop'>
+        <StyledVideo autoPlay loop>
           <source id="webmSource" src={`https://zippy.gfycat.com/${name}.webm`} type="video/webm" />
           <source id="webmSource" src={`https://fat.gfycat.com/${name}.webm`} type="video/webm" />
           <source id="mp4Source" src={`https://zippy.gfycat.com/${name}.mp4`} type="video/mp4" />
           <source id="mp4Source" src={`https://fat.gfycat.com//${name}.mp4`} type="video/mp4" />
           <img role="presentation" title="Sorry, your browser doesn't support HTML5 video." src={thumbnail} />
-        </video>
+        </StyledVideo>
       );
       break;
     case 'm.imgur.com':
       element = (
-        <img src={url.replace('?r', '.gif')} role="presentation" style={style} />
+        <StyledImg src={url.replace('?r', '.gif')} role="presentation" />
       );
       break;
     case 'self.perfectloops':
       element = (
-        <img src="" role="presentation" style={style} />
+        <StyledImg src="" role="presentation" />
       )
       break;
     case 'media.giphy.com':
     default:
         element = (
-          <img src={url} role="presentation" style={style} />
+          <StyledImg src={url} role="presentation" />
         );
       break;
   }
