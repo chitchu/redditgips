@@ -8,7 +8,9 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import { v4 } from 'node-uuid';
 
 const mapState = state => ({
-  content: state.cards.get('content').toJS()
+  entries: state.cards.get('entries').toJS(),
+  posts: state.cards.get('posts').toJS()
+  // content: state.cards.get('content').toJS()
 });
 
 const mapDispatch = dispatch => ({
@@ -47,17 +49,21 @@ class Cards extends Component {
         <StyledGridList
           cellHeight={ 400 }>
           {
-            this.props.content
-              .filter(({data}) => !data.stickied && data.link_flair_text !== 'Request | Waiting' )
-              .map( ({data:tile}) => {
+            this.props.entries
+              .filter( entry => {
+                const {stickied, link_flair_text} = this.props.posts[entry];
+                return (!stickied && link_flair_text !== 'Request | Waiting');
+              })
+              .map ( entry => {
+                const post = this.props.posts[entry];
                 return (
                   <GridTile
                     key={ v4() }
-                    title={ tile.title }
-                    subtitle={ tile.author }>
-                      <ImageContainer {...tile} />
+                    title={ post.title }
+                    subtitle={ post.author }>
+                    <ImageContainer {...post} />
                   </GridTile>
-                )
+                );
               })
           }
         </StyledGridList>
