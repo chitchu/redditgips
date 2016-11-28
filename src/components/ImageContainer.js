@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { playGif } from '../ducks/';
 
-const mapState = state => ({
-
+const mapState = (state, { postId }) => ({
+  ...state.posts.get('posts').get(postId).toJS()
 });
 
 const mapDispatch = dispatch => ({

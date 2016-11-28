@@ -8,8 +8,8 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import { v4 } from 'node-uuid';
 
 const mapState = state => ({
-  entries: state.cards.get('entries').toJS(),
-  posts: state.cards.get('posts').toJS()
+  entries: state.posts.get('entries').toJS(),
+  posts: state.posts.get('posts').toJS()
   // content: state.cards.get('content').toJS()
 });
 
@@ -47,7 +47,7 @@ class Cards extends Component {
     return (
       <RootDiv>
         <StyledGridList
-          cellHeight={ 400 }>
+          cellHeight={400}>
           {
             this.props.entries
               .filter( entry => {
@@ -61,7 +61,7 @@ class Cards extends Component {
                     key={ v4() }
                     title={ post.title }
                     subtitle={ post.author }>
-                    <ImageContainer {...post} />
+                    <ImageContainer postId={entry} />
                   </GridTile>
                 );
               })

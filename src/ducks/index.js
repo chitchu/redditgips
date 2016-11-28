@@ -7,7 +7,7 @@ import { Map, List } from 'immutable';
 const contentLoadedAction = createAction('CONTENT_LOADED');
 const playGifAction = createAction('PLAY_GIF');
 
-const cards = handleActions({
+const posts = handleActions({
   [contentLoadedAction]: (state, {payload}) => {
     // Normalizing data
     const mapped = payload.map( child => Object.assign(child.data, {isPlaying:false}));
@@ -20,7 +20,7 @@ const cards = handleActions({
         };
       }
       return Object.assign(current, {
-        [next.id]: next
+        [next.id]: Map(next)
       });
     });
     return state
@@ -28,16 +28,15 @@ const cards = handleActions({
       .set('posts', Map(reduced));
   },
   [playGifAction]: (state, {payload}) => {
-    const contentList = state.get('content');
-    contentList.filter( content => {
-      return content;
-    });
-    return state;
+    const posts = state.get('posts');
+    const post = posts.get(payload);
+    return state
+      .set('posts', posts.set(payload, post.set('isPlaying', true)));
   }
 }, Map({entries: List(), posts: Map({})}) );
 
 const reducers = combineReducers({
-  cards
+  posts
 });
 
 const loadContent = () => {
