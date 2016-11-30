@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Cards from './Cards';
+import React, { Component } from 'react';
+
 import 'normalize.css';
 
 class App extends Component {

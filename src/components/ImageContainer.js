@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Gipher from './Gipher';
 import styled from 'styled-components';
+
 import { connect } from 'react-redux';
 import { toggleGif } from '../ducks/';
 
