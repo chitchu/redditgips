@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import GridTileContainer from './GridTileContainer';
 import styled from 'styled-components';
 
@@ -17,58 +17,39 @@ const mapDispatch = dispatch => ({
   }
 });
 
-class Cards extends Component {
-  state = {
-    loaded: false
-  };
+const Cards = ({entries, loadContent}) => {
+  if (!entries.length) {
+    loadContent();
+  }
 
-  RootDiv = styled.div`
+  const RootDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around
   `;
 
-  StyledGridList = styled(GridList)`
-    width: 100%;
-    overflow-y: auto;
-  `;
+  const gridListStyle = {
+    width: '100%',
+    overflowY: 'auto'
+  };
 
-  componentDidMount() {
-    if (!this.state.loaded) {
-      this.props.loadContent();
-    }
-  }
-
-  render() {
-    const RootDiv = this.RootDiv;
-    const StyledGridList = this.StyledGridList;
-    return (
-      <RootDiv>
-        <StyledGridList
-          cellHeight={400}>
-          {
-            this.props.entries
-              .map ( entry => {
-                // const post = this.props.posts[entry];
-                // console.log(entry);
-                return (
-                  <GridTileContainer key={v4()} postId={entry} />
-                );
-                // return (
-                //   <GridTile
-                //     key={ v4() }
-                //     title={ post.title }
-                //     subtitle={ post.author }>
-                //     <ImageContainer postId={entry} />
-                //   </GridTile>
-                // );
-              })
-          }
-        </StyledGridList>
-      </RootDiv>
-    );
-  }
-}
+  return (
+    <RootDiv>
+      <GridList
+        style={gridListStyle}
+        cellHeight={400}>
+        {
+          entries
+            .map ( entry => {
+              return (
+                <GridTileContainer key={v4()} postId={entry} />
+              );
+            })
+        }
+      </GridList>
+    </RootDiv>
+  );
+};
 
 const container = connect(
   mapState,
