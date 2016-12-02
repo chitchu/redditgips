@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Gipher from './Gipher';
 import Styled from 'styled-components';
 
@@ -38,34 +38,20 @@ const mapDispatch = dispatch => ({
   }
 });
 
-class ImageContainer extends Component {
-
-  StyledGipher = Styled(Gipher)`
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-  `;
-
-  StyledCard = Styled(Card)`
+const ImageContainer = ({title, author, domain, url, thumbnail}) => {
+  const StyledCard = Styled(Card)`
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   `;
-
-  render() {
-    const StyledCard = this.StyledCard;
-    const StyledGipher = this.StyledGipher;
-    // const Gip = this.props.isPlaying ? <StyledGipher {...this.props} /> : '';
-    return (
-      <StyledCard>
-        <CardMedia
-          overlay={<CardTitle title={this.props.title} subtitle={this.props.author} />}>
-          <StyledGipher {...this.props} />
-        </CardMedia>
-      </StyledCard>
-    );
-  }
-}
+  return (
+    <StyledCard>
+      <CardMedia
+        overlay={<CardTitle title={title} subtitle={author} />}>
+        <Gipher domain={domain} url={url} thumbnail={thumbnail} />
+      </CardMedia>
+    </StyledCard>
+  );
+};
 
 export default connect(
   mapState, mapDispatch

@@ -27,12 +27,17 @@ const Cards = ({entries, loadContent}) => {
     loadContent();
   }
 
-
   const Container = Styled.div`
     ${Media.giant`
       padding: 6rem 5%;
+      max-width: 1170px;
+      display: block;
+      margin: auto;
     `}
     ${Media.desktop`
+      padding: 6rem 5%;
+    `}
+    ${Media.tablet`
       padding: 6rem 5%;
     `}
     ${Media.phone`
