@@ -1,11 +1,12 @@
 import React from 'react';
-import GridTileContainer from './GridTileContainer';
-import styled from 'styled-components';
+import Styled from 'styled-components';
+
+import ImageContainer from './ImageContainer';
 
 import { connect } from 'react-redux';
 import { loadContent } from '../ducks/';
-import { GridList } from 'material-ui/GridList';
 import { v4 } from 'node-uuid';
+
 
 const mapState = state => ({
   entries: state.posts.get('entries').toJS()
@@ -18,35 +19,24 @@ const mapDispatch = dispatch => ({
 });
 
 const Cards = ({entries, loadContent}) => {
+  //@Todo: Find a better place in the app where to load initial content.
+  //Maybe a redux middleware?
+  //or an init action?
   if (!entries.length) {
     loadContent();
   }
 
-  const RootDiv = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around
+  const RootDiv = Styled.div`
+    padding-top: 1rem;
+    padding-left: 5%;
+    padding-right: 5%;
   `;
-
-  const gridListStyle = {
-    width: '100%',
-    overflowY: 'auto'
-  };
 
   return (
     <RootDiv>
-      <GridList
-        style={gridListStyle}
-        cellHeight={400}>
-        {
-          entries
-            .map ( entry => {
-              return (
-                <GridTileContainer key={v4()} postId={entry} />
-              );
-            })
-        }
-      </GridList>
+      {
+        entries.map(entry => <ImageContainer key={v4()} postId={entry} />)
+      }
     </RootDiv>
   );
 };
