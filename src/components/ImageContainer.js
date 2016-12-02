@@ -58,10 +58,10 @@ class ImageContainer extends Component {
     // const Gip = this.props.isPlaying ? <StyledGipher {...this.props} /> : '';
     return (
       <StyledCard>
-        <CardMedia>
+        <CardMedia
+          overlay={<CardTitle title={this.props.title} subtitle={this.props.author} />}>
           <StyledGipher {...this.props} />
         </CardMedia>
-        <CardTitle title={this.props.title} subtitle={this.props.author} />
       </StyledCard>
     );
   }

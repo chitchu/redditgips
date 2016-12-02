@@ -1,4 +1,5 @@
 import React from 'react';
+import Media from './Media';
 import Styled from 'styled-components';
 
 import ImageContainer from './ImageContainer';
@@ -26,18 +27,24 @@ const Cards = ({entries, loadContent}) => {
     loadContent();
   }
 
-  const RootDiv = Styled.div`
-    padding-top: 1rem;
-    padding-left: 5%;
-    padding-right: 5%;
+  const Container = Styled.div`
+    ${Media.giant`
+      padding: 6rem 5%;
+    `}
+    ${Media.desktop`
+      padding: 6rem 5%;
+    `}
+    ${Media.phone`
+      padding: 0 5%;
+    `}
   `;
 
   return (
-    <RootDiv>
+    <Container>
       {
         entries.map(entry => <ImageContainer key={v4()} postId={entry} />)
       }
-    </RootDiv>
+    </Container>
   );
 };
 

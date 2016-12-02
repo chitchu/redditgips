@@ -1,6 +1,6 @@
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import React, { Component } from 'react';
+import React from 'react';
 import Thunk from 'redux-thunk';
 
 import Cards from './Cards';
@@ -20,19 +20,17 @@ const store = createStore(
   applyMiddleware(Thunk)
 );
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <MuiThemeProvider>
-          <div>
-            <AppBar title="redditgips" />
-            <Cards/>
-          </div>
-        </MuiThemeProvider>
-      </Provider>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Provider store={store}>
+      <MuiThemeProvider>
+        <div>
+          <AppBar title="redditgips" style={{position:'fixed'}} />
+          <Cards/>
+        </div>
+      </MuiThemeProvider>
+    </Provider>
+  );
+};
 
 export default App;
