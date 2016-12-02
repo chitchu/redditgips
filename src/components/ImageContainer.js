@@ -1,24 +1,34 @@
 import React, {Component} from 'react';
 import Gipher from './Gipher';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { toggleGif } from '../ducks/';
 
+import {
+  Card,
+  CardMedia,
+  CardTitle
+} from 'material-ui/Card';
+
 const mapState = (state, { postId }) => {
   const {
-    thumbnail,
+    author,
     domain,
-    url,
-    id
+    id,
+    thumbnail,
+    title,
+    url
   } = state.posts.get('posts').get(postId).toJS();
   const isPlaying = state.ui.get('postsStates').get(postId).get('isPlaying');
   return {
-    thumbnail,
-    isPlaying,
+    author,
     domain,
-    url,
-    id
+    id,
+    isPlaying,
+    thumbnail,
+    title,
+    url
   };
 };
 
@@ -30,38 +40,29 @@ const mapDispatch = dispatch => ({
 
 class ImageContainer extends Component {
 
-  RootDiv = styled.div`
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-image: url(${this.props.thumbnail})
-  `;
-
-  PlayButton = styled.button`
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    cursor: pointer;
-  `;
-
-  StyledGipher = styled(Gipher)`
+  StyledGipher = Styled(Gipher)`
     pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
   `;
 
+  StyledCard = Styled(Card)`
+    width: 100%;
+    margin-bottom: 1rem;
+  `;
+
   render() {
-    const RootDiv = this.RootDiv;
-    const PlayButton = this.PlayButton;
+    const StyledCard = this.StyledCard;
     const StyledGipher = this.StyledGipher;
-    const Gip = this.props.isPlaying ? <StyledGipher {...this.props} /> : '';
+    // const Gip = this.props.isPlaying ? <StyledGipher {...this.props} /> : '';
     return (
-      <RootDiv>
-        { Gip }
-        <PlayButton onClick={() => this.props.handleToggle(this.props.id)} />
-      </RootDiv>
+      <StyledCard>
+        <CardMedia>
+          <StyledGipher {...this.props} />
+        </CardMedia>
+        <CardTitle title={this.props.title} subtitle={this.props.author} />
+      </StyledCard>
     );
   }
 }
