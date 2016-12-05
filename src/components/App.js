@@ -1,6 +1,7 @@
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
+import Styled from 'styled-components';
 import Thunk from 'redux-thunk';
 
 import Cards from './Cards';
@@ -21,13 +22,19 @@ const store = createStore(
 );
 
 const App = () => {
+  const Container = Styled.div`
+    background-color: #f2f3f5;
+  `;
+  const StyleAppBar = Styled(AppBar)`
+    position: fixed!important;
+  `;
   return (
     <Provider store={store}>
       <MuiThemeProvider>
-        <div>
-          <AppBar title="redditgips" style={{position:'fixed'}} />
-          <Cards/>
-        </div>
+        <Container>
+          <StyleAppBar title="redditgips" />
+          <Cards />
+        </Container>
       </MuiThemeProvider>
     </Provider>
   );

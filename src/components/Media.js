@@ -1,12 +1,8 @@
 import { css } from 'styled-components';
 // these sizes are arbitrary and you can set them to whatever you wish
 const sizes = {
-  giant: {
-    min: 1170
-  },
   desktop: {
-    min: 992,
-    max: 1169
+    min: 992
   },
   tablet: {
     min:768,

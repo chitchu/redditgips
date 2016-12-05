@@ -28,20 +28,17 @@ const Cards = ({entries, loadContent}) => {
   }
 
   const Container = Styled.div`
-    ${Media.giant`
-      padding: 6rem 5%;
-      max-width: 1170px;
+    ${Media.desktop`
+      padding: 6rem 0;
+      max-width: 992px;
       display: block;
       margin: auto;
     `}
-    ${Media.desktop`
-      padding: 6rem 5%;
-    `}
     ${Media.tablet`
-      padding: 6rem 5%;
+      padding: 6rem 1rem;
     `}
     ${Media.phone`
-      padding: 0 5%;
+      padding: 4rem 1rem;
     `}
   `;
 
