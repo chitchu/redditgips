@@ -4,7 +4,8 @@ import React from 'react';
 import Styled from 'styled-components';
 import Thunk from 'redux-thunk';
 
-import Cards from './Cards';
+// import Cards from './Cards';
+import Pages from './Pages';
 import Reducers from '../ducks/';
 
 import { createStore, applyMiddleware } from 'redux';
@@ -33,7 +34,7 @@ const App = () => {
       <MuiThemeProvider>
         <Container>
           <StyleAppBar title="redditgips" />
-          <Cards />
+          <Pages />
         </Container>
       </MuiThemeProvider>
     </Provider>

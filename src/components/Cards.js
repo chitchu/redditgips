@@ -4,29 +4,9 @@ import Styled from 'styled-components';
 
 import ImageContainer from './ImageContainer';
 
-import { connect } from 'react-redux';
-import { loadContent } from '../ducks/';
 import { v4 } from 'node-uuid';
 
-
-const mapState = state => ({
-  entries: state.posts.get('entries').toJS()
-});
-
-const mapDispatch = dispatch => ({
-  loadContent: () => {
-    dispatch(loadContent());
-  }
-});
-
-const Cards = ({entries, loadContent}) => {
-  //@Todo: Find a better place in the app where to load initial content.
-  //Maybe a redux middleware?
-  //or an init action?
-  if (!entries.length) {
-    loadContent();
-  }
-
+const Cards = ({entries}) => {
   const Container = Styled.div`
     ${Media.desktop`
       padding: 6rem 0;
@@ -43,19 +23,10 @@ const Cards = ({entries, loadContent}) => {
   `;
 
   return (
-    <Container>
-      {
-        entries.map(entry => <ImageContainer key={v4()} postId={entry} />)
-      }
-    </Container>
+    <Container children={entries.map(postId => <ImageContainer key={v4()} postId={postId}/>)} />
   );
 };
 
-const container = connect(
-  mapState,
-  mapDispatch
-)(Cards);
-
 export {
-  container as default
+  Cards as default
 }
