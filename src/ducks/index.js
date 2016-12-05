@@ -84,6 +84,7 @@ const loadContent = () => {
     fetch('https://www.reddit.com/r/perfectloops/hot.json')
       .then( xhr =>  xhr.json() )
       .then( ({data: {children}}) => {
+        // map it here?
         dispatch(contentLoadedAction(children));
       })
   };

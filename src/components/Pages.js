@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Cards from './Cards';
 import { loadContent } from '../ducks/';
@@ -15,16 +15,16 @@ const mapDispatch = dispatch => ({
   }
 });
 
-class Pages extends Component {
+class Pages extends PureComponent {
   componentWillMount() {
     if (this.props.entries.length === 0) {
       this.props.loadContent();
     }
   }
 
-  shouldComponentUpdate({entries}) {
-    return (entries.length > 0);
-  }
+  // shouldComponentUpdate({entries}) {
+  //   return (entries.length > 0);
+  // }
 
   render() {
     return <Cards entries={this.props.entries} />

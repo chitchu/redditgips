@@ -1,9 +1,10 @@
 import React from 'react';
-import Gipher from './Gipher';
 import Styled from 'styled-components';
 
-import { connect } from 'react-redux';
+import Gipher from './Gipher';
+import { toggleGif } from '../ducks';
 
+import { connect } from 'react-redux';
 import {
   Card,
   CardMedia,
@@ -19,20 +20,25 @@ const mapState = (state, {postId}) => {
     title,
     url
   } = state.posts.get('posts').get(postId).toJS();
-
+  const isPlaying = state.ui.get('postsStates').get(postId).get('isPlaying');
   return {
     author,
     domain,
     id,
+    isPlaying,
     thumbnail,
     title,
     url
   };
 };
 
-const mapDispatch = dispatch => ({});
+const mapDispatch = dispatch => ({
+  handleToggle: id => {
+    dispatch(toggleGif(id));
+  }
+});
 
-const ImageContainer = ({author, domain, id, isPlaying, thumbnail, title, url}) => {
+const ImageContainer = ({author, domain, id, isPlaying, thumbnail, title, url, handleToggle}) => {
   const StyledCard = Styled(Card)`
     width: 100%;
     margin-bottom: 2rem;
@@ -48,7 +54,7 @@ const ImageContainer = ({author, domain, id, isPlaying, thumbnail, title, url}) 
   return (
     <StyledCard>
       <CardMedia overlay={<CardTitle title={title} subtitle={author} />} overlayContainerStyle={{pointerEvents: 'none'}}>
-        <ClickCatcher>
+        <ClickCatcher onClick={() => handleToggle(id)}>
           <Gipher domain={domain} url={url} thumbnail={thumbnail} />
         </ClickCatcher>
       </CardMedia>
