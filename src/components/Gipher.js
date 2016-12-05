@@ -51,8 +51,7 @@ const Gipher = (props) => {
       break;
     case 'media.giphy.com':
     default:
-      let giphyUrl = (url.match('.gif')) ? url : `https://media.giphy.com/media/${url.substr(url.lastIndexOf('-') + 1)}/giphy.gif`;
-      console.log (url, giphyUrl);
+      let giphyUrl = (url.match('\\.gif')) ? url : `https://media.giphy.com/media/${url.substr(url.lastIndexOf('-') + 1)}/giphy.gif`;
       element = (
         <StyledImg src={giphyUrl} role="presentation" />
       );
