@@ -17,8 +17,8 @@ const Gipher = (props) => {
   const { domain, url, thumbnail } = props;
 
   let element;
-
   switch (domain) {
+    case 'imgur.com':
     case 'i.imgur.com':
       const imgurname = url.split('/')[url.split('/').length -1].split('.')[0];
       element = (
@@ -50,10 +50,16 @@ const Gipher = (props) => {
       )
       break;
     case 'media.giphy.com':
-    default:
+    case 'giphy.com':
       let giphyUrl = (url.match('\\.gif')) ? url : `https://media.giphy.com/media/${url.substr(url.lastIndexOf('-') + 1)}/giphy.gif`;
       element = (
         <StyledImg src={giphyUrl} role="presentation" />
+      );
+      break;
+    case 'mc-market.org':
+    default:
+      element = (
+        <StyledImg src={url} role="presentation" />
       );
       break;
   }
