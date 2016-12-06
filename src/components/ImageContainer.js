@@ -44,19 +44,10 @@ const ImageContainer = ({author, domain, id, isPlaying, thumbnail, title, url, h
     margin-bottom: 2rem;
   `;
 
-  const ClickCatcher = Styled.div`
-    cursor: pointer;
-    position: relative;
-    width: 100%;
-    height: 100%;
-  `;
-
   return (
     <StyledCard>
       <CardMedia overlay={<CardTitle title={title} subtitle={author} />} overlayContainerStyle={{pointerEvents: 'none'}}>
-        <ClickCatcher onClick={() => handleToggle(id)}>
-          <Gipher domain={domain} url={url} thumbnail={thumbnail} />
-        </ClickCatcher>
+        <Gipher domain={domain} url={url} thumbnail={thumbnail} />
       </CardMedia>
     </StyledCard>
   );

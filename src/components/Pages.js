@@ -22,10 +22,6 @@ class Pages extends PureComponent {
     }
   }
 
-  // shouldComponentUpdate({entries}) {
-  //   return (entries.length > 0);
-  // }
-
   render() {
     return <Cards entries={this.props.entries} />
   }

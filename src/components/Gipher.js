@@ -17,14 +17,19 @@ class Gipher extends PureComponent {
     const StyledVideo = this.StyledVideo;
     const StyledImg = this.StyledImg;
     const { domain, url, thumbnail } = this.props;
+    const videoElementProps = {
+      loop: true,
+      autoPlay: true
+    };
 
     let element;
+
     switch (domain) {
       case 'imgur.com':
       case 'i.imgur.com':
         const imgurname = url.split('/')[url.split('/').length -1].split('.')[0];
         element = (
-          <StyledVideo loop>
+          <StyledVideo {...videoElementProps}>
               <source src={`//i.imgur.com/${imgurname}.mp4`} type="video/mp4" />
           </StyledVideo>
         );
@@ -32,7 +37,7 @@ class Gipher extends PureComponent {
       case 'gfycat.com':
         const name = url.split('/')[url.split('/').length - 1];
         element = (
-          <StyledVideo loop>
+          <StyledVideo {...videoElementProps}>
             <source id="webmSource" src={`https://zippy.gfycat.com/${name}.webm`} type="video/webm" />
             <source id="webmSource" src={`https://fat.gfycat.com/${name}.webm`} type="video/webm" />
             <source id="mp4Source" src={`https://zippy.gfycat.com/${name}.mp4`} type="video/mp4" />
