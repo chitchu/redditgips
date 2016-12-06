@@ -79,9 +79,9 @@ const reducers = combineReducers({
   ui
 });
 
-const loadContent = () => {
+const loadContent = after => {
   return (dispatch, getState) => {
-    fetch('https://www.reddit.com/r/perfectloops/hot.json')
+    fetch(`https://www.reddit.com/r/perfectloops/hot.json?limit=25`)
       .then( xhr =>  xhr.json() )
       .then( ({data: {children}}) => {
         // map it here?
