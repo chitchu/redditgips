@@ -5,9 +5,13 @@ import { loadContent } from '../ducks/';
 
 import { connect } from 'react-redux';
 
-const mapState = state => ({
-  entries: state.posts.get('entries').toJS()
-});
+const mapState = state => {
+  const currentPage = state.posts.get('page');
+  const entries = state.posts.get('pages').toJS();
+  return {
+    entries: entries[currentPage] || []
+  }
+};
 
 const mapDispatch = dispatch => ({
   loadContent: () => {

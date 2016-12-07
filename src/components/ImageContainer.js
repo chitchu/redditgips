@@ -17,12 +17,10 @@ const mapState = (state, {postId}) => {
     title,
     url
   } = state.posts.get('posts').get(postId).toJS();
-  const isPlaying = state.ui.get('postsStates').get(postId).get('isPlaying');
   return {
     author,
     domain,
     id,
-    isPlaying,
     thumbnail,
     title,
     url
@@ -35,7 +33,7 @@ const mapDispatch = dispatch => ({
   }
 });
 
-const ImageContainer = ({author, domain, id, isPlaying, thumbnail, title, url, handleToggle}) => {
+const ImageContainer = ({author, domain, id, thumbnail, title, url, handleToggle}) => {
 
   const Card = Styled.div`
     width: 100%;
