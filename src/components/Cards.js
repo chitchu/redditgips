@@ -9,7 +9,7 @@ import { v4 } from 'node-uuid';
 const Cards = ({entries}) => {
   const Container = Styled.div`
     ${Media.desktop`
-      padding: 6rem 0;
+      padding: 4rem 0;
       max-width: 992px;
       display: block;
       margin: auto;
@@ -23,7 +23,9 @@ const Cards = ({entries}) => {
   `;
 
   return (
-    <Container children={entries.map(postId => <ImageContainer key={v4()} postId={postId}/>)} />
+    <Container>
+      {entries.map(postId => <ImageContainer key={v4()} postId={postId}/>)}
+    </Container>
   );
 };
 

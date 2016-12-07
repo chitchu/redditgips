@@ -9,7 +9,6 @@ class Gipher extends PureComponent {
   `;
   StyledImg = styled.img`
     position: relative;
-    width: 100%;
     display: block;
   `;
 

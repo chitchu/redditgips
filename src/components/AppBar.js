@@ -3,6 +3,7 @@ import React from 'react';
 import Media from './Media';
 import RedditLogo from './RedditLogo';
 import Styled from 'styled-components';
+import Theme from './Theme';
 
 const AppBar = () => {
   const Container = Styled.div`
@@ -16,7 +17,7 @@ const AppBar = () => {
   `;
   const Title = Styled.h1`
     color: #343434;
-    font-family: 'Roboto', sans-serif;
+    font-family: ${Theme.primaryFont};
     font-size: 1.6rem;
     margin: 0 0 0 0.2rem;
     display: inline;
