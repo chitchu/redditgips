@@ -1,4 +1,4 @@
-import AppBar from 'material-ui/AppBar';
+import AppBar from './AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
 import Styled from 'styled-components';
@@ -26,14 +26,11 @@ const App = () => {
   const Container = Styled.div`
     background-color: #f2f3f5;
   `;
-  const StyleAppBar = Styled(AppBar)`
-    position: fixed!important;
-  `;
   return (
     <Provider store={store}>
       <MuiThemeProvider>
         <Container>
-          <StyleAppBar title="redditgips" />
+          <AppBar title="redditgips" />
           <Pages />
         </Container>
       </MuiThemeProvider>
