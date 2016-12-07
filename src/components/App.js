@@ -1,5 +1,5 @@
 import AppBar from './AppBar';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import React from 'react';
 import Styled from 'styled-components';
 import Thunk from 'redux-thunk';
@@ -9,10 +9,6 @@ import Reducers from '../ducks/';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-
-//material-ui requirement
-// import injectTapEventPlugin from 'react-tap-event-plugin';
-// injectTapEventPlugin();
 
 const store = createStore(
   Reducers,
