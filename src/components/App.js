@@ -1,18 +1,17 @@
-import AppBar from './AppBar';
-
 import React from 'react';
 import Styled from 'styled-components';
 import Thunk from 'redux-thunk';
 
+import AppBar from './AppBar';
 import Pages from './Pages';
 import Reducers from '../ducks/';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-const store = createStore(
-  Reducers,
-  applyMiddleware(Thunk)
+const store = createStore(Reducers
+  , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  , applyMiddleware(Thunk)
 );
 
 const App = () => {
