@@ -29,7 +29,7 @@ class Gipher extends PureComponent {
         const imgurname = url.split('/')[url.split('/').length -1].split('.')[0];
         element = (
           <StyledVideo {...videoElementProps}>
-              <source src={`//i.imgur.com/${imgurname}.mp4`} type="video/mp4" />
+              <source src={`https://i.imgur.com/${imgurname}.mp4`} type="video/mp4" />
           </StyledVideo>
         );
         break;
@@ -53,7 +53,7 @@ class Gipher extends PureComponent {
       case 'self.perfectloops':
         element = (
           <StyledImg src="" role="presentation" />
-        )
+        );
         break;
       case 'media.giphy.com':
       case 'giphy.com':

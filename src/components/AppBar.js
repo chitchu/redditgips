@@ -1,9 +1,9 @@
 import React from 'react';
+import Styled from 'styled-components';
 
 import Media from './Media';
 import Pagination from './Pagination';
 import RedditLogo from './RedditLogo';
-import Styled from 'styled-components';
 import Theme from './Theme';
 
 const AppBar = ({title}) => {

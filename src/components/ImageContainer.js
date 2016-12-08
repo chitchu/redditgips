@@ -8,24 +8,9 @@ import Theme from './Theme';
 
 import { toggleGif } from '../ducks';
 
-const mapState = (state, {postId}) => {
-  const {
-    author,
-    domain,
-    id,
-    thumbnail,
-    title,
-    url
-  } = state.posts.get('posts').get(postId).toJS();
-  return {
-    author,
-    domain,
-    id,
-    thumbnail,
-    title,
-    url
-  };
-};
+const mapState = (state, {postId}) => ({
+  ...state.posts.get('posts').get(postId).toJS(),
+});
 
 const mapDispatch = dispatch => ({
   handleToggle: id => {
