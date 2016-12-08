@@ -6,7 +6,7 @@ import RedditLogo from './RedditLogo';
 import Styled from 'styled-components';
 import Theme from './Theme';
 
-const AppBar = () => {
+const AppBar = ({title}) => {
   const Container = Styled.div`
     background-color: white;
     padding-top: 0.4rem;
@@ -43,7 +43,7 @@ const AppBar = () => {
       <Column>
         <RedditLogo />
         <Title>
-          redditgips
+          {title}
         </Title>
         <Pagination />
       </Column>
