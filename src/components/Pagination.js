@@ -7,9 +7,8 @@ import Theme from './Theme';
 
 import { moveToPage } from '../ducks/';
 
-const mapState = state => ({
-  previousIsDiabled: state.posts.get('page') === 1,
-  currentPage: state.posts.get('page')
+const mapState = state => ({previousIsDiabled: state.posts.get('page') === 1
+  , currentPage: state.posts.get('page')
 });
 
 const mapDispatch = (dispatch, ownProps) => ({
