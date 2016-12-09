@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import Gipher from './Gipher';
-import Media from './Media';
+import Media from '../modules/Media';
 import Theme from './Theme';
 
 import { toggleGif } from '../ducks';

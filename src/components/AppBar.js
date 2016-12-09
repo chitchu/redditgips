@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import Media from './Media';
+import Media from '../modules/Media';
 import Pagination from './Pagination';
 import RedditLogo from './RedditLogo';
 import Theme from './Theme';

@@ -12,10 +12,8 @@ const sizes = {
     max: 767
   }
 }
-
 // iterate through the sizes and create a media template
 const Media = Object.keys(sizes).reduce((accumulator, label) => {
-
   // let emSize = sizes[label] / 16
   const {min, max} = sizes[label];
   let query = '';
@@ -25,7 +23,6 @@ const Media = Object.keys(sizes).reduce((accumulator, label) => {
   if (min) {
     query += (max) ? `and (min-width: ${min/16}em)` : `(min-width: ${min/16}em)`;
   }
-
   accumulator[label] = (...args) => css`
     @media ${query} {
       ${css(...args)}

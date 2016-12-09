@@ -1,5 +1,5 @@
 import React from 'react';
-import Media from './Media';
+import Media from '../modules/Media';
 import Styled from 'styled-components';
 
 import ImageContainer from './ImageContainer';
