@@ -6,6 +6,8 @@ import AppBar from './AppBar';
 import Pages from './Pages';
 import Reducers from '../ducks/';
 
+import { saveState } from '../modules/ReduxLocalStore';
+
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -13,6 +15,10 @@ const store = createStore(Reducers
   , (process.env.NODE_ENV === 'development') ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : args => args
   , applyMiddleware(Thunk)
 );
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 const App = () => {
   const Container = Styled.div`

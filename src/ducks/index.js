@@ -2,7 +2,9 @@ import fetch from 'isomorphic-fetch';
 
 import { combineReducers } from 'redux';
 import { handleActions, createAction } from 'redux-actions';
-import { Map, List } from 'immutable';
+import { Map, List, fromJS } from 'immutable';
+
+import { loadState } from '../modules/ReduxLocalStore';
 
 const contentLoadedAction = createAction('CONTENT_LOADED',
   (children, page) => {
@@ -17,6 +19,7 @@ const contentLoadedAction = createAction('CONTENT_LOADED',
 const playGifAction = createAction('PLAY_GIF');
 const toggleGifAction = createAction('TOGGLE_GIF');
 const changePage = createAction('CHANGE_PAGE');
+const offlineMode = createAction('OFFLINE_MODE');
 
 const posts = handleActions({
   [changePage]: (state, {payload}) => {
@@ -43,6 +46,8 @@ const posts = handleActions({
       .set('posts', currentPosts.merge(Map(hashed)))
       .set('page', page);
   }
+  ,
+  [offlineMode]: (state, {payload: {posts}}) => fromJS({...posts, page: 1})
 }, Map({pages: Map({})
   , posts: Map({})
   , page: 1
@@ -63,9 +68,14 @@ const ui = handleActions({
           .set(next, Map({isPlaying: false}));
       });
     return state
-      .set('postsStates', mappedKeys);
+      .set('postsStates', mappedKeys)
+      .set('offlineMode', false);
   }
-}, Map({postsStates: Map({})}))
+  ,
+  [offlineMode]: (state, {payload: {ui}}) => fromJS({...ui, offlineMode: true})
+}, Map({postsStates: Map({})
+  , offlineMode: false
+}))
 
 const reducers = combineReducers({posts
   , ui
@@ -74,10 +84,14 @@ const reducers = combineReducers({posts
 const loadContent = after => (dispatch, getState) => {
   const currentPage = getState().posts.get('page');
   fetch(`https://www.reddit.com/r/perfectloops/hot.json?limit=10`)
-    .then( xhr =>  xhr.json() )
+    .then( xhr => xhr.json())
     .then( ({data: {children}}) => {
       dispatch(contentLoadedAction(children, currentPage));
     })
+    .catch( (errMessage, two, three, four) => {
+      //offline? probably.
+      dispatch(offlineMode(loadState()));
+    });
 };
 
 const moveToPage = (direction, newPage) => (dispatch, getState) => {
@@ -92,7 +106,11 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
       .then( xhr => xhr.json())
       .then( ({data: {children}}) => {
         dispatch(contentLoadedAction(children, newPage.toString()));
-      });
+      })
+      .catch( (errMessage, two, three, four) => {
+        //offline? probably.
+        dispatch(offlineMode(loadState()));
+      });;
   }
 };
 

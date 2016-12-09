@@ -8,6 +8,7 @@ import Theme from './Theme';
 import { moveToPage } from '../ducks/';
 
 const mapState = state => ({previousIsDiabled: state.posts.get('page') === 1
+  , nextIsDisabled: state.ui.get('offlineMode') && state.posts.get('page') === state.posts.get('pages').size
   , currentPage: state.posts.get('page')
 });
 
@@ -20,10 +21,11 @@ const mapDispatch = (dispatch, ownProps) => ({
   }
 });
 
-const Pagination = ({previousIsDiabled
-  , currentPage
-  , handlePrev
+const Pagination = ({currentPage
   , handleNext
+  , handlePrev
+  , nextIsDisabled
+  , previousIsDiabled
 }) => {
   const Container = Styled.div`
     display: flex;
@@ -51,7 +53,7 @@ const Pagination = ({previousIsDiabled
   return (
     <Container>
       <Button disabled={previousIsDiabled} onClick={() => handlePrev(currentPage)}>Prev</Button>
-      <Button onClick={() => handleNext(currentPage)}>Next</Button>
+      <Button disabled={nextIsDisabled} onClick={() => handleNext(currentPage)}>Next</Button>
     </Container>
   );
 };
