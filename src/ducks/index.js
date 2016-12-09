@@ -21,7 +21,8 @@ const changePage = createAction('CHANGE_PAGE');
 const posts = handleActions({
   [changePage]: (state, {payload}) => {
     return state.set('page', payload);
-  },
+  }
+  ,
   [contentLoadedAction]: (state, {payload: {mapped, page}}) => {
     // Normalizing data
     const hashed = mapped.reduce((current = {}, next) => {
@@ -42,10 +43,9 @@ const posts = handleActions({
       .set('posts', currentPosts.merge(Map(hashed)))
       .set('page', page);
   }
-}, Map({
-  pages: Map({}),
-  posts: Map({}),
-  page: 1
+}, Map({pages: Map({})
+  , posts: Map({})
+  , page: 1
 }));
 
 const ui = handleActions({
