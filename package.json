@@ -20,6 +20,9 @@
     "redux-thunk": "^2.1.0",
     "styled-components": "^1.1.2"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "scripts": {
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "deploy": "yarn build && gh-pages -d build",
