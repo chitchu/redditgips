@@ -1,10 +1,11 @@
 import fetch from 'isomorphic-fetch';
+import Thunk from 'redux-thunk';
 
-import { combineReducers } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { handleActions, createAction } from 'redux-actions';
 import { Map, List, fromJS } from 'immutable';
 
-import { loadState } from '../modules/ReduxLocalStore';
+import { loadState, saveState } from '../modules/ReduxLocalStore';
 
 const contentLoadedAction = createAction('CONTENT_LOADED',
   (children, page) => {
@@ -117,7 +118,16 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
 const playGif = args => playGifAction(args);
 const toggleGif = args => toggleGifAction(args);
 
-export { reducers as default
+const store = createStore(reducers
+  , (process.env.NODE_ENV === 'development') ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : args => args
+  , applyMiddleware(Thunk)
+);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
+export { store as default
   , loadContent
   , moveToPage
   , playGif
