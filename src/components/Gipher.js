@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import styled from 'styled-components';
 
 class Gipher extends PureComponent {
@@ -72,5 +72,10 @@ class Gipher extends PureComponent {
     return element;
   }
 }
+
+Gipher.propTypes = { domain: PropTypes.string.isRequired
+  , url: PropTypes.string.isRequired
+  , thumbnail: PropTypes.string.isRequired
+};
 
 export default Gipher;

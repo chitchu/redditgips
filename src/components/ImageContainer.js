@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -18,8 +18,7 @@ const mapDispatch = dispatch => ({
   }
 });
 
-const ImageContainer = ({author, domain, id, thumbnail, title, url, handleToggle}) => {
-
+const Image = ({author, domain, id, thumbnail, title, url, handleToggle}) => {
   const Card = Styled.div`
     width: 100%;
     margin-bottom: 2rem;
@@ -78,6 +77,10 @@ const ImageContainer = ({author, domain, id, thumbnail, title, url, handleToggle
   );
 };
 
-export default connect(
+const ImageContainer = connect(
   mapState, mapDispatch
-)(ImageContainer);
+)(Image);
+
+ImageContainer.propTypes = { postId: PropTypes.string.isRequired };
+
+export default ImageContainer;

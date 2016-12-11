@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Media from '../modules/Media';
 import Styled from 'styled-components';
 
@@ -26,6 +26,8 @@ const Cards = ({entries}) => {
     </Container>
   );
 };
+
+Cards.propTypes = { entries: PropTypes.array.isRequired };
 
 export {
   Cards as default

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Styled from 'styled-components';
 
 import Media from '../modules/Media';
@@ -52,5 +52,7 @@ const AppBar = ({title}) => {
     </Container>
   );
 };
+
+AppBar.propTypes = { title: PropTypes.string };
 
 export default AppBar;

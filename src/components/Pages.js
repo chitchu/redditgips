@@ -19,6 +19,10 @@ const mapDispatch = dispatch => ({
   }
 });
 
+/**
+ * Contemplating if all of this is needed.
+ * Should we just make <Cards /> stateful?
+ */
 class Pages extends PureComponent {
   componentWillMount() {
     if (this.props.entries.length === 0) {
