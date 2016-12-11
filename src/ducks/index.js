@@ -17,11 +17,17 @@ const contentLoadedAction = createAction('CONTENT_LOADED',
     return {mapped, page};
   });
 
+/**
+ * Actions Creators
+ */
 const playGifAction = createAction('PLAY_GIF');
 const toggleGifAction = createAction('TOGGLE_GIF');
 const changePage = createAction('CHANGE_PAGE');
 const offlineMode = createAction('OFFLINE_MODE');
 
+/**
+ * Reducers
+ */
 const posts = handleActions({
   [changePage]: (state, {payload}) => {
     return state.set('page', payload);
@@ -82,6 +88,9 @@ const reducers = combineReducers({posts
   , ui
 });
 
+/**
+ * Exports
+ */
 const loadContent = after => (dispatch, getState) => {
   const currentPage = getState().posts.get('page');
   fetch(`https://www.reddit.com/r/perfectloops/hot.json?limit=10`)
