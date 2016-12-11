@@ -4,8 +4,6 @@ import Styled from 'styled-components';
 
 import ImageContainer from './ImageContainer';
 
-import { v4 } from 'node-uuid';
-
 const Cards = ({entries}) => {
   const Container = Styled.div`
     ${Media.desktop`
@@ -24,7 +22,7 @@ const Cards = ({entries}) => {
 
   return (
     <Container>
-      {entries.map(postId => <ImageContainer key={v4()} postId={postId}/>)}
+      {entries.map((postId, key) => <ImageContainer key={key} postId={postId}/>)}
     </Container>
   );
 };
