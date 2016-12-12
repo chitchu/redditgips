@@ -4,7 +4,7 @@ import Styled from 'styled-components';
 import { Provider } from 'react-redux';
 
 import AppBar from './AppBar';
-import Pages from './Pages';
+import CardsContainer from './CardsContainer';
 import store from '../ducks/';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
     <Provider store={store}>
       <Container>
         <AppBar title="redditgips" />
-        <Pages />
+        <CardsContainer />
       </Container>
     </Provider>
   );
