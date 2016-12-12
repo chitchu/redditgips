@@ -22,8 +22,8 @@ class Gipher extends PureComponent {
     };
 
     let element;
-
     switch (domain) {
+
       case 'imgur.com':
       case 'i.imgur.com':
         const imgurname = url.split('/')[url.split('/').length -1].split('.')[0];
@@ -53,6 +53,16 @@ class Gipher extends PureComponent {
       case 'self.perfectloops':
         element = (
           <StyledImg src="" role="presentation" />
+        );
+        break;
+      case 'supload.com':
+        const id = url.split('/')[url.split('/').length - 1];
+        element = (
+          <StyledVideo {...videoElementProps}>
+            <source id="webmSource" src={`https://i.supload.com/${id}-hd.webm`} type="video/webm" />
+            <source id="mp4Source" src={`https://i.supload.com/${id}-hd.mp4`} type="video/mp4" />
+            <img role="presentation" title="Sorry, your browser doesn't support HTML5 video." src={thumbnail} />
+          </StyledVideo>
         );
         break;
       case 'media.giphy.com':
