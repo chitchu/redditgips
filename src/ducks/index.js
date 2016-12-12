@@ -7,6 +7,10 @@ import { Map, List, fromJS } from 'immutable';
 
 import { loadState, saveState } from '../modules/ReduxLocalStore';
 
+/**
+ * Actions Creators
+ */
+
 const contentLoadedAction = createAction('CONTENT_LOADED',
   (children, page) => {
     const mapped = children
@@ -17,11 +21,6 @@ const contentLoadedAction = createAction('CONTENT_LOADED',
     return {mapped, page};
   });
 
-/**
- * Actions Creators
- */
-const playGifAction = createAction('PLAY_GIF');
-const toggleGifAction = createAction('TOGGLE_GIF');
 const changePage = createAction('CHANGE_PAGE');
 const offlineMode = createAction('OFFLINE_MODE');
 
@@ -124,9 +123,6 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
   }
 };
 
-const playGif = args => playGifAction(args);
-const toggleGif = args => toggleGifAction(args);
-
 const store = createStore(reducers
   , (process.env.NODE_ENV === 'development') ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : args => args
   , applyMiddleware(Thunk)
@@ -139,6 +135,4 @@ store.subscribe(() => {
 export { store as default
   , loadContent
   , moveToPage
-  , playGif
-  , toggleGif
 };
