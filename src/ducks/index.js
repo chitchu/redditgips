@@ -90,9 +90,11 @@ const reducers = combineReducers({posts
 /**
  * Exports
  */
+
+const SUBREDDIT = 'https://www.reddit.com/r/perfectloops';
 const loadContent = after => (dispatch, getState) => {
   const currentPage = getState().posts.get('page');
-  fetch(`https://www.reddit.com/r/perfectloops/hot.json?limit=10`)
+  fetch(`${SUBREDDIT}/hot.json?limit=10`)
     .then( xhr => xhr.json())
     .then( ({data: {children}}) => {
       dispatch(contentLoadedAction(children, currentPage));
@@ -111,7 +113,7 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
   if (pages.has(newPage.toString())) {
     dispatch(changePage(newPage));
   } else {
-    fetch(`https://www.reddit.com/r/perfectloops/hot.json?limit=10&${direction}=t3_${pages.get(currentPage.toString()).last()}`)
+    fetch(`${SUBREDDIT}/hot.json?limit=10&${direction}=t3_${pages.get(currentPage.toString()).last()}`)
       .then( xhr => xhr.json())
       .then( ({data: {children}}) => {
         dispatch(contentLoadedAction(children, newPage.toString()));
