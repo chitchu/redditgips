@@ -109,7 +109,7 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
   const { posts: postStates } = getState();
   const pages = postStates.get('pages');
   const currentPage = postStates.get('page');
-
+  document.body.scrollTop = 0; //it just works
   if (pages.has(newPage.toString())) {
     dispatch(changePage(newPage));
   } else {
