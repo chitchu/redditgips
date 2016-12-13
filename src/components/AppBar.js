@@ -5,6 +5,7 @@ import Media from '../modules/Media';
 import OfflineStatus from './OfflineStatus';
 import Pagination from './Pagination';
 import RedditLogo from './RedditLogo';
+import SubredditSource from './SubredditSource';
 import Theme from './Theme';
 
 const AppBar = ({title}) => {
@@ -47,6 +48,7 @@ const AppBar = ({title}) => {
           {title}
         </Title>
         <OfflineStatus />
+        <SubredditSource />
         <Pagination />
       </Column>
     </Container>

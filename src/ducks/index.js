@@ -21,15 +21,21 @@ const contentLoadedAction = createAction('CONTENT_LOADED',
     return {mapped, page};
   });
 
+const changeSource = createAction('CHANGE_SOURCE');
 const changePage = createAction('CHANGE_PAGE');
 const offlineMode = createAction('OFFLINE_MODE');
-
 /**
  * Reducers
  */
 const posts = handleActions({
   [changePage]: (state, {payload}) => {
     return state.set('page', payload);
+  }
+  ,
+  [changeSource]: (state, {payload}) => {
+    return state
+      .set('page', 1) //reset the page
+      .set('source', payload);
   }
   ,
   [contentLoadedAction]: (state, {payload: {mapped, page}}) => {
@@ -57,6 +63,7 @@ const posts = handleActions({
 }, Map({pages: Map({})
   , posts: Map({})
   , page: 1
+  , source: 'perfectloops'
 }));
 
 const ui = handleActions({
@@ -91,10 +98,12 @@ const reducers = combineReducers({posts
  * Exports
  */
 
-const SUBREDDIT = 'https://www.reddit.com/r/perfectloops';
+const BASE = 'https://www.reddit.com/r';
 const loadContent = after => (dispatch, getState) => {
   const currentPage = getState().posts.get('page');
-  fetch(`${SUBREDDIT}/hot.json?limit=10`)
+  const subreddit = getState().posts.get('source');
+  document.body.scrollTop = 0; //it just works
+  fetch(`${BASE}/${subreddit}/hot.json?limit=10`)
     .then( xhr => xhr.json())
     .then( ({data: {children}}) => {
       dispatch(contentLoadedAction(children, currentPage));
@@ -113,7 +122,8 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
   if (pages.has(newPage.toString())) {
     dispatch(changePage(newPage));
   } else {
-    fetch(`${SUBREDDIT}/hot.json?limit=10&${direction}=t3_${pages.get(currentPage.toString()).last()}`)
+    const subreddit = getState().posts.get('source');
+    fetch(`${BASE}/${subreddit}/hot.json?limit=10&${direction}=t3_${pages.get(currentPage.toString()).last()}`)
       .then( xhr => xhr.json())
       .then( ({data: {children}}) => {
         dispatch(contentLoadedAction(children, newPage.toString()));
@@ -135,6 +145,7 @@ store.subscribe(() => {
 });
 
 export { store as default
+  , changeSource
   , loadContent
   , moveToPage
 };

@@ -22,7 +22,8 @@ class Cards extends PureComponent {
   `;
 
   state = {
-    scrollTop: 0
+    scrollTop: 0,
+    currentSource: ''
   };
 
   handleScroll = event => {
@@ -31,6 +32,13 @@ class Cards extends PureComponent {
 
   componentWillMount() {
     if (this.props.entries.length === 0) {
+      this.props.loadContent();
+    }
+  }
+
+  componentWillReceiveProps({source}) {
+    if (this.state.currentSource !== source) {
+      this.setState({currentSource: source});
       this.props.loadContent();
     }
   }
