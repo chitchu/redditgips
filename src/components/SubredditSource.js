@@ -30,6 +30,14 @@ class SubredditSource extends PureComponent {
     }
   `;
 
+  Heading = Styled.h2`
+    color: #a9a9a9;
+    font-family: ${Theme.primaryFont};
+    font-size: 1.2rem;
+    margin: 0;
+    display: inline;
+  `;
+
   Input = Styled.input`
     color: #a9a9a9;
     font-family: ${Theme.primaryFont};
@@ -104,7 +112,7 @@ class SubredditSource extends PureComponent {
       <this.Title onClick={this.enableEditMode}>{this.state.source}</this.Title>;
     return (
       <div>
-        <this.Title>/r/</this.Title>
+        <this.Heading>/r/</this.Heading>
         {title}
       </div>
     );
