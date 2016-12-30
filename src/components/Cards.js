@@ -32,14 +32,14 @@ class Cards extends PureComponent {
 
   componentWillMount() {
     if (this.props.entries.length === 0) {
-      this.props.loadContent();
+      this.props.loadContent(this.props.sub, this.props.after);
     }
   }
 
   componentWillReceiveProps({source}) {
     if (this.state.currentSource !== source) {
       this.setState({currentSource: source});
-      this.props.loadContent();
+      this.props.loadContent(this.props.sub, this.props.after);
     }
   }
 

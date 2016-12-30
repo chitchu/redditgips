@@ -4,7 +4,7 @@ import Theme from './Theme';
 
 import { connect } from 'react-redux';
 
-import { changeSource } from '../ducks/';
+import { redirectTo } from '../ducks/';
 
 const mapState = state => ({
   source: state.posts.get('source')
@@ -12,7 +12,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   changeSource: source => {
-    dispatch(changeSource(source));
+    // dispatch(changeSource(source));
+    dispatch(redirectTo(source));
   }
 });
 
@@ -95,6 +96,12 @@ class SubredditSource extends PureComponent {
   componentDidMount() {
     this.setState({
       source: this.props.source
+    });
+  }
+
+  componentWillReceiveProps({source}) {
+    this.setState({
+      source: source
     });
   }
 

@@ -24,6 +24,11 @@ const contentLoadedAction = createAction('CONTENT_LOADED',
 const changeSource = createAction('CHANGE_SOURCE');
 const changePage = createAction('CHANGE_PAGE');
 const offlineMode = createAction('OFFLINE_MODE');
+const redirectTo = createAction('REDIRECT_TO',
+  (source) => {
+    window.location.href = `/r/${source}/start`;
+  });
+
 /**
  * Reducers
  */
@@ -63,7 +68,7 @@ const posts = handleActions({
 }, Map({pages: Map({})
   , posts: Map({})
   , page: 1
-  , source: 'perfectloops'
+  , source: 'gifs'
 }));
 
 const ui = handleActions({
@@ -99,21 +104,21 @@ const reducers = combineReducers({posts
  */
 
 const BASE = 'https://www.reddit.com/r';
-const loadContent = after => (dispatch, getState) => {
-  const currentPage = getState().posts.get('page');
-  const subreddit = getState().posts.get('source');
+const loadContent = (subreddit, after) => (dispatch, getState) => {
+  let afterParams = (after !== 'start') ? `&after=t3_${after}` : '';
   document.body.scrollTop = 0; //it just works
-  fetch(`${BASE}/${subreddit}/hot.json?limit=10`)
+  fetch(`${BASE}/${subreddit}/hot.json?limit=10${afterParams}`)
     .then( xhr => xhr.json())
     .then( ({data: {children}}) => {
-      dispatch(contentLoadedAction(children, currentPage));
+      dispatch(changeSource(subreddit));
+      dispatch(contentLoadedAction(children, 1));
     })
     .catch( (errMessage, two, three, four) => {
       //offline? probably.
       dispatch(offlineMode(loadState()));
     });
 };
-
+// TODO: deprecated?
 const moveToPage = (direction, newPage) => (dispatch, getState) => {
   const { posts: postStates } = getState();
   const pages = postStates.get('pages');
@@ -135,17 +140,22 @@ const moveToPage = (direction, newPage) => (dispatch, getState) => {
   }
 };
 
-const store = createStore(reducers
-  , (process.env.NODE_ENV === 'development') ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : args => args
-  , applyMiddleware(Thunk)
-);
+const initializeStore = defaults => {
+  const store = createStore(reducers
+    , (process.env.NODE_ENV === 'development') ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : args => args
+    , applyMiddleware(Thunk)
+    , defaults
+  );
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+  store.subscribe(() => {
+    saveState(store.getState());
+  });
+  return store;
+};
 
-export { store as default
-  , changeSource
+export { changeSource
+  , initializeStore
   , loadContent
   , moveToPage
+  , redirectTo
 };

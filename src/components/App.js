@@ -1,23 +1,19 @@
 import React from 'react';
-import Styled from 'styled-components';
+import Router from 'react-router/lib/Router';
+import Route from 'react-router/lib/Route';
+import browserHistory from 'react-router/lib/browserHistory';
+import IndexRedirect from 'react-router/lib/IndexRedirect';
 
-import { Provider } from 'react-redux';
-
-import AppBar from './AppBar';
-import CardsContainer from './CardsContainer';
-import store from '../ducks/';
+import {Root, SubredditView } from './Root';
 
 const App = () => {
-  const Container = Styled.div`
-    background-color: #f2f3f5;
-  `;
   return (
-    <Provider store={store}>
-      <Container>
-        <AppBar title="redditgips" />
-        <CardsContainer />
-      </Container>
-    </Provider>
+    <Router history={browserHistory}>
+      <Route path="/" component={Root}>
+        <IndexRedirect to="/r/perfectloops/start" />
+        <Route path="r/:sub/:after" component={SubredditView} />
+      </Route>
+    </Router>
   );
 };
 
