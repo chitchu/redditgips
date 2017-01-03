@@ -25,7 +25,7 @@ const changeSource = createAction('CHANGE_SOURCE');
 const changePage = createAction('CHANGE_PAGE');
 const offlineMode = createAction('OFFLINE_MODE');
 const redirectTo = createAction('REDIRECT_TO',
-  (source) => {
+  source => {
     window.location.href = `/r/${source}/start`;
   });
 
@@ -68,7 +68,7 @@ const posts = handleActions({
 }, Map({pages: Map({})
   , posts: Map({})
   , page: 1
-  , source: 'gifs'
+  // , source: 'gifs'
 }));
 
 const ui = handleActions({
@@ -144,7 +144,6 @@ const initializeStore = defaults => {
   const store = createStore(reducers
     , (process.env.NODE_ENV === 'development') ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : args => args
     , applyMiddleware(Thunk)
-    , defaults
   );
 
   store.subscribe(() => {
