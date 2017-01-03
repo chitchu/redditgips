@@ -34,6 +34,6 @@ const SubredditView = ({params: {sub, after}}) => {
 }
 
 export {
-  Root as defaut,
+  Root as default,
   SubredditView
 };
