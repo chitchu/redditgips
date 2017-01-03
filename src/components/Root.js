@@ -8,13 +8,7 @@ import CardsContainer from './CardsContainer';
 
 import { initializeStore } from '../ducks/';
 
-const Root = ({children}) => {
-  return (
-    <div>
-      {children}
-    </div>
-  );
-};
+const Root = ({children}) => (<div>{children}</div>);
 
 const SubredditView = ({params: {sub, after}}) => {
 
