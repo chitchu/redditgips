@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["index.html","a8ce7239b9060732ed2142bd69b5264e"],["manifest.json","9cc318ac89498dfb4ad83e156020e14a"],["static/css/main.7daa6915.css","2541d8a0955b841aeb333bd60d8e4061"],["static/js/main.d5c6d3cc.js","c4592e648efc089f0b7c711b2d3dc04e"],["static/media/ic_signal_wifi_off_black_24px.ac21f916.svg","ac21f916943249882e708be73be94c3a"]];
+var precacheConfig = [["index.html","2c4183e3cddd81abf69ba30172671e0d"],["manifest.json","9cc318ac89498dfb4ad83e156020e14a"],["static/css/main.7daa6915.css","2541d8a0955b841aeb333bd60d8e4061"],["static/js/main.26a6c566.js","9e95e7d39a292ae735e766dfc4be37fb"],["static/media/ic_signal_wifi_off_black_24px.ac21f916.svg","ac21f916943249882e708be73be94c3a"]];
 var cacheName = 'sw-precache-v2-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -134,7 +134,10 @@ self.addEventListener('install', function(event) {
           Array.from(urlsToCacheKeys.values()).map(function(cacheKey) {
             // If we don't have a key matching url in the cache already, add it.
             if (!cachedUrls.has(cacheKey)) {
-              return cache.add(new Request(cacheKey, {credentials: 'same-origin'}));
+              return cache.add(new Request(cacheKey, {
+                credentials: 'same-origin',
+                redirect: 'follow'
+              }));
             }
           })
         );
