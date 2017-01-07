@@ -21,6 +21,7 @@ const mapDispatch = dispatch => ({
 const Image = ({author
   , domain
   , id
+  , permalink
   , thumbnail
   , title
   , url
@@ -58,12 +59,18 @@ const Image = ({author
     padding: 1rem;
   `;
 
-  const Title = Styled.h2`
+  const Title = Styled.a`
+    display: block;
     font-family: ${Theme.primaryFont};
     font-size: 1.6rem;
     color: white;
     margin: 0;
     text-shadow: 1px 1px #222;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   `;
 
   const Author = Styled.small`
@@ -76,7 +83,7 @@ const Image = ({author
       <Gipher domain={domain} url={url} thumbnail={thumbnail} />
       <Overlay>
         <Padding>
-          <Title>{title}</Title>
+          <Title href={`https://reddit.com/${permalink}`} target='_blank'>{title}</Title>
           <Author>{author}</Author>
         </Padding>
       </Overlay>
