@@ -1,16 +1,15 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import Styled from 'styled-components';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Gipher from './Gipher';
 import Media from '../modules/Media';
 import Theme from './Theme';
 
-import { toggleGif } from '../ducks';
+import {toggleGif} from '../ducks';
 
-const mapState = (state, {postId, scrollTop}) => ({
-  ...state.posts.get('posts').get(postId).toJS()
-});
+const mapState = (state, {postId, scrollTop}) =>
+  ({...state.posts.get('posts').get(postId).toJS()});
 
 const mapDispatch = dispatch => ({
   handleToggle: id => {
@@ -18,14 +17,7 @@ const mapDispatch = dispatch => ({
   }
 });
 
-const Image = ({author
-  , domain
-  , id
-  , thumbnail
-  , title
-  , url
-  , handleToggle
-}) => {
+const Image = ({author, domain, id, thumbnail, title, url, handleToggle}) => {
   const Card = Styled.div`
     width: 100%;
     margin-bottom: 2rem;
@@ -84,10 +76,8 @@ const Image = ({author
   );
 };
 
-const ImageContainer = connect(
-  mapState, mapDispatch
-)(Image);
+const ImageContainer = connect(mapState, mapDispatch)(Image);
 
-ImageContainer.propTypes = { postId: PropTypes.string.isRequired };
+ImageContainer.propTypes = {postId: PropTypes.string.isRequired};
 
 export default ImageContainer;

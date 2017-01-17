@@ -4,7 +4,7 @@ import Route from 'react-router/lib/Route';
 import browserHistory from 'react-router/lib/browserHistory';
 import IndexRedirect from 'react-router/lib/IndexRedirect';
 
-import {Root, SubredditView } from './Root';
+import {Root,SubredditView} from './Root';
 
 const App = () => {
   return (

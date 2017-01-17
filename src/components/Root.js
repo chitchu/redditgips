@@ -1,17 +1,16 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import AppBar from './AppBar';
 import CardsContainer from './CardsContainer';
 
-import { initializeStore } from '../ducks/';
+import {initializeStore} from '../ducks/';
 
-const Root = ({children}) => (<div>{children}</div>);
+const Root = ({children}) => <div>{children}</div>;
 
 const SubredditView = ({params: {sub, after}}) => {
-
   const store = initializeStore({posts: {source: sub}});
 
   const Container = Styled.div`
@@ -25,9 +24,6 @@ const SubredditView = ({params: {sub, after}}) => {
       </Container>
     </Provider>
   );
-}
-
-export {
-  Root as default,
-  SubredditView
 };
+
+export {Root as default,SubredditView};
