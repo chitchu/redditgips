@@ -1,5 +1,5 @@
 /* global JSON */
-const LOCALSTORAGE_PATH = 'gipstate'
+const LOCALSTORAGE_PATH = 'gipstate';
 
 const loadState = () => {
   try {
@@ -23,7 +23,4 @@ const saveState = state => {
   }
 };
 
-export {
-  loadState,
-  saveState
-};
+export {loadState,saveState};

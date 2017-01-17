@@ -1,39 +1,40 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Theme from './Theme';
 
-import { moveToPage } from '../ducks/';
+import {moveToPage} from '../ducks/';
 
-const mapState = state => ({previousIsDiabled: state.posts.get('page') === 1
-  , nextIsDisabled: state.ui.get('offlineMode') && state.posts.get('page') === state.posts.get('pages').size
-  , currentPage: state.posts.get('page')
-});
+const mapState = state =>
+  ({
+    previousIsDiabled: state.posts.get('page') === 1,
+    nextIsDisabled: state.ui.get('offlineMode') &&
+      state.posts.get('page') === state.posts.get('pages').size,
+    currentPage: state.posts.get('page')
+  });
 
 const mapDispatch = (dispatch, ownProps) => ({
   handlePrev: currentPage => {
-    dispatch(moveToPage('before', parseInt(currentPage, 10) - 1))
+    dispatch(moveToPage('before', parseInt(currentPage, 10) - 1));
   },
   handleNext: currentPage => {
-    dispatch(moveToPage('after', parseInt(currentPage, 10) + 1))
+    dispatch(moveToPage('after', parseInt(currentPage, 10) + 1));
   }
 });
 
-const Pagination = ({currentPage
-  , handleNext
-  , handlePrev
-  , nextIsDisabled
-  , previousIsDiabled
-}) => {
-  const Container = Styled.div`
+const Pagination = (
+  {currentPage, handleNext, handlePrev, nextIsDisabled, previousIsDiabled}
+) =>
+  {
+    const Container = Styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
   `;
 
-  const Button = Styled.button`
+    const Button = Styled.button`
     background-color: transparent;
     font-family: ${Theme.primaryFont};
     border: none;
@@ -50,18 +51,24 @@ const Pagination = ({currentPage
       outline: none;
     }
   `;
-  return (
-    <Container>
-      <Button disabled={previousIsDiabled} onClick={() => handlePrev(currentPage)}>Prev</Button>
-      <Button disabled={nextIsDisabled} onClick={() => handleNext(currentPage)}>Next</Button>
-    </Container>
-  );
-};
+    return (
+      <Container>
+        <Button
+          disabled={previousIsDiabled}
+          onClick={() => handlePrev(currentPage)}
+        >
+          Prev
+        </Button>
+        <Button
+          disabled={nextIsDisabled}
+          onClick={() => handleNext(currentPage)}
+        >
+          Next
+        </Button>
+      </Container>
+    );
+  };
 
-const Container = connect(mapState
-  , mapDispatch
-)(Pagination);
+const Container = connect(mapState, mapDispatch)(Pagination);
 
-export {
-  Container as default
-};
+export {Container as default};

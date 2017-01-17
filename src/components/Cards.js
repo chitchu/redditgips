@@ -1,11 +1,11 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, {PureComponent,PropTypes} from 'react';
 import Media from '../modules/Media';
 import Styled from 'styled-components';
 
 import ImageContainer from './ImageContainer';
 
 class Cards extends PureComponent {
-  static propTypes = { entries: PropTypes.array.isRequired };
+  static propTypes = {entries: PropTypes.array.isRequired};
   Container = Styled.div`
     ${Media.desktop`
       padding: 4rem 0;
@@ -21,10 +21,7 @@ class Cards extends PureComponent {
     `}
   `;
 
-  state = {
-    scrollTop: 0,
-    currentSource: ''
-  };
+  state = {scrollTop: 0, currentSource: ''};
 
   handleScroll = event => {
     this.setState({scrollTop: event.srcElement.body.scrollTop});
@@ -54,12 +51,14 @@ class Cards extends PureComponent {
   render() {
     return (
       <this.Container>
-        {this.props.entries.map((postId, key) => <ImageContainer key={key} postId={postId} />)}
+        {
+          this.props.entries.map(
+            (postId, key) => <ImageContainer key={key} postId={postId} />
+          )
+        }
       </this.Container>
     );
   }
 }
 
-export {
-  Cards as default
-}
+export {Cards as default};

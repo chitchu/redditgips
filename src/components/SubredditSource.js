@@ -1,14 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import Styled from 'styled-components';
 import Theme from './Theme';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { changeSource } from '../ducks/';
+import {changeSource} from '../ducks/';
 
-const mapState = state => ({
-  source: state.posts.get('source')
-});
+const mapState = state => ({source: state.posts.get('source')});
 
 const mapDispatch = dispatch => ({
   changeSource: source => {
@@ -48,31 +46,22 @@ class SubredditSource extends PureComponent {
       outline: none;
     }
   `;
-  state = {
-    editMode: false,
-    source: ''
-  };
+  state = {editMode: false, source: ''};
 
   enableEditMode = evt => {
-    this.setState({
-      editMode: true
-    });
-  }
+    this.setState({editMode: true});
+  };
 
   disableEditMode = evt => {
-    this.setState({
-      editMode: false
-    });
-  }
+    this.setState({editMode: false});
+  };
 
   handleChange = evt => {
     // One thing to look out for is when the
     // source props gets update outside of
     // this component.
-    this.setState({
-      source: evt.target.value
-    });
-  }
+    this.setState({source: evt.target.value});
+  };
 
   handleKeyUp = ({keyCode}) => {
     switch (keyCode) {
@@ -86,30 +75,34 @@ class SubredditSource extends PureComponent {
       default:
         break;
     }
-  }
+  };
 
   handleFocus = evt => {
     evt.target.select();
-  }
+  };
 
   componentDidMount() {
-    this.setState({
-      source: this.props.source
-    });
+    this.setState({source: this.props.source});
   }
 
-  render () {
-    const title = this.state.editMode ?
-      <this.Input
-        autoFocus
-        type='text'
-        onFocus={this.handleFocus}
-        onBlur={this.disableEditMode}
-        onChange={this.handleChange}
-        onKeyUp={this.handleKeyUp}
-        value={this.state.source}
-        /> :
-      <this.Title onClick={this.enableEditMode}>{this.state.source}</this.Title>;
+  render() {
+    const title = this.state.editMode
+      ? (
+        <this.Input
+          autoFocus
+          type="text"
+          onFocus={this.handleFocus}
+          onBlur={this.disableEditMode}
+          onChange={this.handleChange}
+          onKeyUp={this.handleKeyUp}
+          value={this.state.source}
+        />
+      )
+      : (
+        <this.Title onClick={this.enableEditMode}>
+          {this.state.source}
+        </this.Title>
+      );
     return (
       <div>
         <this.Heading>/r/</this.Heading>
@@ -118,5 +111,4 @@ class SubredditSource extends PureComponent {
     );
   }
 }
-export default connect(mapState, mapDispatch)(SubredditSource);
-// export default SubredditSource;
+export default connect(mapState, mapDispatch)(SubredditSource)

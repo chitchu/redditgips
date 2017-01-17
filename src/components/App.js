@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import AppBar from './AppBar';
 import CardsContainer from './CardsContainer';

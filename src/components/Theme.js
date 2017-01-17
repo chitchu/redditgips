@@ -1,3 +1,1 @@
-export default {
-  primaryFont: "'Roboto', sans-serif"
-};
+export default {primaryFont: "'Roboto', sans-serif"}

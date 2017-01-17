@@ -1,7 +1,7 @@
 import Cards from './Cards';
-import { loadContent } from '../ducks/';
+import {loadContent} from '../ducks/';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 const mapState = state => {
   const currentPage = state.posts.get('page');
@@ -9,7 +9,7 @@ const mapState = state => {
   return {
     entries: entries[currentPage] || [],
     source: state.posts.get('source')
-  }
+  };
 };
 
 const mapDispatch = dispatch => ({
@@ -18,10 +18,6 @@ const mapDispatch = dispatch => ({
   }
 });
 
-const CardsContainer = connect(mapState
-  , mapDispatch
-)(Cards);
+const CardsContainer = connect(mapState, mapDispatch)(Cards);
 
-export {
-  CardsContainer as default
-}
+export {CardsContainer as default};
