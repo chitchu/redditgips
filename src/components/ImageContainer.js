@@ -22,62 +22,66 @@ const Image = (
 ) =>
   {
     const Card = Styled.div`
-    width: 100%;
-    margin-bottom: 2rem;
-    background-color: #222;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    box-shadow: 2px 2px 8px -1px #444;
-    overflow: hidden;
-    position: relative;
-    ${Media.desktop`
-      height: 558px;
-    `}
-    ${Media.tablet`
-      height: 558px;
-    `}
-    ${Media.phone`
-      height: 490px;
-    `}
-  `;
+      width: 100%;
+      margin-bottom: 2rem;
+      background-color: #222;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      box-shadow: 2px 2px 8px -1px #444;
+      overflow: hidden;
+      position: relative;
+      ${Media.desktop`
+        height: 558px;
+      `}
+      ${Media.tablet`
+        height: 558px;
+      `}
+      ${Media.phone`
+        height: 490px;
+      `}
+    `;
 
     const Overlay = Styled.div`
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    position:absolute;
-    bottom: 0;
-  `;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      position:absolute;
+      bottom: 0;
+    `;
 
     const Padding = Styled.div`
-    padding: 1rem;
-  `;
+      padding: 1rem;
+    `;
 
     const Title = Styled.a`
-    display: block;
-    font-family: ${Theme.primaryFont};
-    font-size: 1.6rem;
-    color: white;
-    margin: 0;
-    text-shadow: 1px 1px #222;
-    text-decoration: none;
+      display: block;
+      font-family: ${Theme.primaryFont};
+      font-size: 1.6rem;
+      color: white;
+      margin: 0;
+      text-shadow: 1px 1px #222;
+      text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  `;
+      &:hover {
+        text-decoration: underline;
+      }
+    `;
 
     const Author = Styled.small`
-    font-family: ${Theme.primaryFont};
-    color: #aaa;
-  `;
+      font-family: ${Theme.primaryFont};
+      color: #aaa;
+    `;
 
     return (
       <Card>
         <Gipher domain={domain} url={url} thumbnail={thumbnail} />
         <Overlay>
           <Padding>
-            <Title href={`https://reddit.com/${permalink}`} target="_blank">
+            <Title
+              href={`https://reddit.com/${permalink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {title}
             </Title>
             <Author>{author}</Author>
