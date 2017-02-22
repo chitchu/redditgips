@@ -20,6 +20,7 @@
     "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.26.0",
     "image-webpack-loader": "^3.1.0",
+    "offline-plugin": "^4.6.1",
     "style-loader": "^0.13.1",
     "sw-precache": "^5.0.0",
     "webpack": "2.2",
@@ -41,6 +42,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --env.option development",
-    "build": "rm -rf build && webpack --env.option production"
+    "build": "rm -rf build && webpack --env.option production",
+    "deploy": "npm run build && gh-pages -d build"
   }
 }

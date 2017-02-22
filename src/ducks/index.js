@@ -7,6 +7,8 @@ import { Map, List, fromJS } from 'immutable';
 
 import { loadState, saveState } from '../modules/ReduxLocalStore';
 
+import { install } from 'offline-plugin/runtime';
+if (process.env.NODE_ENV === 'production') install();
 /**
  * Actions Creators
  */

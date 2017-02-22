@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const OfflinePlugin = require('offline-plugin');
 
 module.exports = env => {
   let htmlWebpackPluginOpts = {
@@ -37,7 +38,8 @@ module.exports = env => {
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         names: [ 'vendor', 'manifest' ]
-      })
+      }),
+      new OfflinePlugin()
     ]);
   }
 
@@ -47,6 +49,7 @@ module.exports = env => {
     entry = Object.assign(entry, {
       vendor: [
         'immutable',
+        'offline-plugin/runtime',
         'react-dom',
         'react-redux',
         'react',
