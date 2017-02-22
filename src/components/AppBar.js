@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import Styled from 'styled-components';
 
 import Media from '../modules/Media';
@@ -8,7 +8,7 @@ import RedditLogo from './RedditLogo';
 import SubredditSource from './SubredditSource';
 import Theme from './Theme';
 
-const AppBar = ({title}) => {
+const AppBar = ({ title }) => {
   const Container = Styled.div`
     background-color: white;
     padding-top: 0.4rem;
@@ -55,6 +55,6 @@ const AppBar = ({title}) => {
   );
 };
 
-AppBar.propTypes = {title: PropTypes.string};
+AppBar.propTypes = { title: PropTypes.string };
 
 export default AppBar;

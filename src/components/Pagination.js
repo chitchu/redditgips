@@ -1,19 +1,18 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Theme from './Theme';
 
-import {moveToPage} from '../ducks/';
+import { moveToPage } from '../ducks/';
 
-const mapState = state =>
-  ({
-    previousIsDiabled: state.posts.get('page') === 1,
-    nextIsDisabled: state.ui.get('offlineMode') &&
-      state.posts.get('page') === state.posts.get('pages').size,
-    currentPage: state.posts.get('page')
-  });
+const mapState = state => ({
+  previousIsDiabled: state.posts.get('page') === 1,
+  nextIsDisabled: state.ui.get('offlineMode') &&
+    state.posts.get('page') === state.posts.get('pages').size,
+  currentPage: state.posts.get('page')
+});
 
 const mapDispatch = (dispatch, ownProps) => ({
   handlePrev: currentPage => {
@@ -25,7 +24,7 @@ const mapDispatch = (dispatch, ownProps) => ({
 });
 
 const Pagination = (
-  {currentPage, handleNext, handlePrev, nextIsDisabled, previousIsDiabled}
+  { currentPage, handleNext, handlePrev, nextIsDisabled, previousIsDiabled }
 ) =>
   {
     const Container = Styled.div`
@@ -71,4 +70,4 @@ const Pagination = (
 
 const Container = connect(mapState, mapDispatch)(Pagination);
 
-export {Container as default};
+export { Container as default };

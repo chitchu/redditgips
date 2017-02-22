@@ -23,4 +23,4 @@ const saveState = state => {
   }
 };
 
-export {loadState,saveState};
+export { loadState, saveState };

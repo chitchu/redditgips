@@ -1,4 +1,4 @@
-import React, {PureComponent,PropTypes} from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import styled from 'styled-components';
 
 class Gipher extends PureComponent {
@@ -15,8 +15,8 @@ class Gipher extends PureComponent {
   render() {
     const StyledVideo = this.StyledVideo;
     const StyledImg = this.StyledImg;
-    const {domain, url, thumbnail} = this.props;
-    const videoElementProps = {loop: true, autoPlay: true};
+    const { domain, url, thumbnail } = this.props;
+    const videoElementProps = { loop: true, autoPlay: true };
 
     let element;
     switch (domain) {

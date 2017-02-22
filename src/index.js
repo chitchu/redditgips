@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {injectGlobal} from 'styled-components';
+import { injectGlobal } from 'styled-components';
 
 import App from './components/App';
 
