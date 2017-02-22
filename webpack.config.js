@@ -66,7 +66,8 @@ module.exports = env => {
     output: {
       path: path.join(__dirname, `build`),
       filename: `[name].[chunkhash:8].js`,
-      pathinfo: env.option === 'development'
+      pathinfo: env.option === 'development',
+      publicPath: 'public'
     },
     module: {
       rules: [
