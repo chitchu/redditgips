@@ -40,6 +40,7 @@
     "extends": "react-app"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server"
+    "start": "webpack-dev-server --env.option development",
+    "build": "rm -rf build && webpack --env.option production"
   }
 }
