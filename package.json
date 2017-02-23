@@ -37,12 +37,9 @@
     "redux-thunk": "^2.2.0",
     "styled-components": "^1.4.3"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "scripts": {
     "start": "webpack-dev-server --env.option development",
-    "build": "rm -rf build && webpack --env.option production",
+    "build": "rm -rf build && mkdir build && cp -rf public/ build/ && webpack --env.option production",
     "deploy": "npm run build && gh-pages -d build"
   }
 }
