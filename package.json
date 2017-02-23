@@ -39,7 +39,10 @@
   },
   "scripts": {
     "start": "webpack-dev-server --env.option development",
-    "build": "rm -rf build && mkdir build && cp -rf public/ build/ && webpack --env.option production",
-    "deploy": "npm run build && gh-pages -d build"
+    "clean": "rm -rf build && mkdir build",
+    "copy": "cp -rf public/ build/",
+    "build": "npm run clean && cp -rf public/ build/ && webpack --env.option production",
+    "deploy": "npm run build && npm run copy && gh-pages -d build",
+    "ci-deploy": "npm run build && npm run copy && gh-pages --repo https://$GH_TOKEN@github.com/chitchu/redditgips.git -d build --silent"
   }
 }
