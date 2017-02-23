@@ -7,10 +7,13 @@ import ImageContainer from './ImageContainer';
 class Cards extends PureComponent {
   static propTypes = { entries: PropTypes.array.isRequired };
   Container = Styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     ${Media.desktop`
       padding: 4rem 0;
       max-width: 992px;
-      display: block;
       margin: auto;
     `}
     ${Media.tablet`
@@ -19,6 +22,24 @@ class Cards extends PureComponent {
     ${Media.phone`
       padding: 4rem 1rem;
     `}
+  `;
+
+  MoreButton = Styled.button`
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    transition: all 0.2s;
+    &:hover {
+      background-color: #e9e9e9;
+    }
+    &:disabled {
+      opacity: 0.4;
+    }
+    &:focus, &:active {
+      outline: none;
+    }
   `;
 
   state = { scrollTop: 0, currentSource: '' };
@@ -54,6 +75,11 @@ class Cards extends PureComponent {
         {this.props.entries.map((postId, key) => (
           <ImageContainer key={key} postId={postId} />
         ))}
+        <this.MoreButton
+          onClick={evt => this.props.loadMore(this.props.currentPage)}
+        >
+          More
+        </this.MoreButton>
       </this.Container>
     );
   }

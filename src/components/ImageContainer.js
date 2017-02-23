@@ -49,7 +49,7 @@ const Image = (
       position:absolute;
       bottom: 0;
       left: 0;
-      z-index: 2;
+      z-index: 0;
     `;
 
     const Padding = Styled.div`

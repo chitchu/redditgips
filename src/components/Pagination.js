@@ -28,28 +28,28 @@ const Pagination = (
 ) =>
   {
     const Container = Styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-  `;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    `;
 
     const Button = Styled.button`
-    background-color: transparent;
-    font-family: ${Theme.primaryFont};
-    border: none;
-    cursor: pointer;
-    padding: 0.4rem;
-    transition: all 0.2s;
-    &:hover {
-      background-color: #e9e9e9;
-    }
-    &:disabled {
-      opacity: 0.4;
-    }
-    &:focus, &:active {
-      outline: none;
-    }
-  `;
+      background-color: transparent;
+      font-family: ${Theme.primaryFont};
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      transition: all 0.2s;
+      &:hover {
+        background-color: #e9e9e9;
+      }
+      &:disabled {
+        opacity: 0.4;
+      }
+      &:focus, &:active {
+        outline: none;
+      }
+    `;
     return (
       <Container>
         <Button
