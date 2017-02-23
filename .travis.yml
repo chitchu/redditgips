@@ -1,0 +1,9 @@
+language: node_js
+before_script:
+  - git config --global user.email "chitchu@gmail.com"
+  - git config --global user.name "Travis-CI"
+deploy:
+  skip_cleanup: true
+  after_deploy: yarn ci-deploy
+  on:
+    tags: true
