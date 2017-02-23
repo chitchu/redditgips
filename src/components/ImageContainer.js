@@ -48,6 +48,8 @@ const Image = (
       background-color: rgba(0, 0, 0, 0.2);
       position:absolute;
       bottom: 0;
+      left: 0;
+      z-index: 2;
     `;
 
     const Padding = Styled.div`
