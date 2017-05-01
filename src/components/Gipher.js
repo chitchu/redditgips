@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 class Gipher extends PureComponent {
@@ -22,9 +23,9 @@ class Gipher extends PureComponent {
     switch (domain) {
       case 'imgur.com':
       case 'i.imgur.com':
-        const imgurname = url.split('/')[url.split('/').length - 1].split(
-          '.'
-        )[0];
+        const imgurname = url.split('/')[url.split('/').length - 1].split('.')[
+          0
+        ];
         element = (
           <StyledVideo {...videoElementProps}>
             <source
@@ -100,9 +101,7 @@ class Gipher extends PureComponent {
       case 'giphy.com':
         let giphyUrl = url.match('\\.gif')
           ? url
-          : `https://media.giphy.com/media/${url.substr(
-            url.lastIndexOf('-') + 1
-          )}/giphy.gif`;
+          : `https://media.giphy.com/media/${url.substr(url.lastIndexOf('-') + 1)}/giphy.gif`;
         element = <StyledImg src={giphyUrl} role="presentation" />;
         break;
       case 'mc-market.org':

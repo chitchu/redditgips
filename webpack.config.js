@@ -37,13 +37,13 @@ module.exports = env => {
     plugins = plugins.concat([
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
-        names: [ 'vendor', 'manifest' ]
+        names: ['vendor', 'manifest']
       }),
       new OfflinePlugin()
     ]);
   }
 
-  let entry = { app: [ path.join(__dirname, 'src', 'index.js') ] };
+  let entry = { app: [path.join(__dirname, 'src', 'index.js')] };
 
   if (env.option === 'production') {
     entry = Object.assign(entry, {
@@ -71,9 +71,9 @@ module.exports = env => {
     module: {
       rules: [
         { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
-        { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
+        { test: /\.css$/, use: ['style-loader', 'css-loader'] },
         { test: /\.(jpe?g|png|gif)$/i, use: 'base64-image-loader' },
-        { test: /\.svg$/i, loaders: [ 'file-loader', 'image-webpack-loader' ] }
+        { test: /\.svg$/i, loaders: ['file-loader'] }
       ]
     },
     plugins
